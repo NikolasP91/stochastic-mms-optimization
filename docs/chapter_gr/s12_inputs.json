@@ -1,0 +1,232 @@
+{
+ "title": "Είσοδοι του μοντέλου: το αρχείο JSON",
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "Η είσοδος είναι το **υπάρχον** JSON του ντετερμινιστικού MMS, στο οποίο προστίθεται ένα αντικείμενο `stochastic`. Έτσι όλα τα τεχνικά δεδομένα (μονάδες, καταστάσεις, κόστη, σημαίες περιορισμών) παραμένουν σε ένα μέρος και είναι **κοινά** σε όλα τα σενάρια· μόνο η ζήτηση και η διαθέσιμη ΑΠΕ γίνονται σενάρια."
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Ντετερμινιστικό μέρος (κοινό)"
+  },
+  {
+   "type": "table",
+   "caption": "Κύρια πεδία του αρχικού JSON",
+   "header": [
+    "Πεδίο",
+    "Περιεχόμενο",
+    "Ρόλος στο στοχαστικό μοντέλο"
+   ],
+   "rows": [
+    [
+     "`Generating_Units[]`",
+     "Τεχνικά στοιχεία, καμπύλες κόστους, καταστάσεις, μεταβάσεις, χρονιστές, εφεδρείες",
+     "Κοινά· availability γνωστό (χωρίς τυχαίες βλάβες)"
+    ],
+    [
+     "`Load_forecast`",
+     "$H+1$ τιμές, η 0 είναι ιστορικό",
+     "Η τιμή 0 κοινή· οι 1..H αντικαθίστανται από κάθε σενάριο"
+    ],
+    [
+     "`Production_Forecast` (ΑΠΕ)",
+     "$H$ τιμές ανά μονάδα",
+     "Αντικαθίσταται από `renewables_mw` κάθε σεναρίου"
+    ],
+    [
+     "`current_Power(MW)`, `state`, `isEnabled`",
+     "Αρχική κατάσταση $t=0$",
+     "Κοινή, από μέτρηση"
+    ],
+    [
+     "`constraints`",
+     "Σημαίες ενεργοποίησης περιορισμών",
+     "Ισοζύγιο και μεταβάσεις υποχρεωτικά"
+    ],
+    [
+     "`Cost_parameters`, `Other_coefficients`",
+     "Ποινές, συντελεστές απαιτήσεων εφεδρείας",
+     "Κοινά"
+    ],
+    [
+     "`Time_granularity`",
+     "Διάρκεια περιόδου σε λεπτά",
+     "Πρέπει να είναι 60"
+    ]
+   ]
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Το αντικείμενο stochastic"
+  },
+  {
+   "type": "table",
+   "caption": "Πεδία του stochastic",
+   "header": [
+    "Πεδίο",
+    "Υποχρεωτικό",
+    "Περιεχόμενο"
+   ],
+   "rows": [
+    [
+     "`scenarios`",
+     "ναι",
+     "Λίστα σεναρίων: id, probability, load_mw, renewables_mw, (tree_path)"
+    ],
+    [
+     "`slack_policy`",
+     "ναι",
+     "mode: legacy ή bounded· caps: ανώτατα όρια χαλαρώσεων ανά πρόθεμα"
+    ],
+    [
+     "`scenario_tree`",
+     "όχι",
+     "stage_start_hours· ενεργοποιεί το πολυσταδιακό μοντέλο"
+    ],
+    [
+     "`risk`",
+     "όχι",
+     "alpha, weight (CVaR)· προεπιλογή ουδέτερο ως προς τον κίνδυνο"
+    ],
+    [
+     "`reserve_link`, `reserve_link_mode`",
+     "όχι",
+     "Σύνδεση παραγωγής–ενεργοποίησης και σημασιολογία της"
+    ],
+    [
+     "`reserve_products`",
+     "με reserve_link",
+     "response_minutes, κόστη ενεργοποίησης, balancing_deployment"
+    ],
+    [
+     "`storage`",
+     "όχι",
+     "Λίστα BESS / υβριδικών σταθμών"
+    ],
+    [
+     "`cost_policy`",
+     "όχι",
+     "thermal_online_charge_eur_per_h, legacy_time_scaled_costs, renewable_curtailment_eur_per_mwh"
+    ],
+    [
+     "`maximum_on`",
+     "όχι",
+     "Μέγιστος συνεχής χρόνος ON, ιστορικό, προαιρετική ποινή"
+    ],
+    [
+     "`initial_operating_obligations`",
+     "όχι",
+     "Υπολειπόμενες υποχρεώσεις από κυλιόμενη μετάβαση"
+    ]
+   ]
+  },
+  {
+   "type": "table",
+   "caption": "Πεδία ενός αποθηκευτικού σταθμού (stochastic.storage[])",
+   "header": [
+    "Πεδίο",
+    "Μονάδα",
+    "Σημασία"
+   ],
+   "rows": [
+    [
+     "`capacity_mwh`, `min_mwh`",
+     "MWh",
+     "Λειτουργικό εύρος ενέργειας"
+    ],
+    [
+     "`initial_mwh`, `terminal_min_mwh`",
+     "MWh",
+     "Αρχική (μέτρηση) και ελάχιστη τελική ενέργεια"
+    ],
+    [
+     "`charge_mw`, `discharge_mw`",
+     "MW",
+     "Όρια ισχύος"
+    ],
+    [
+     "`charge_efficiency`, `discharge_efficiency`",
+     "(0,1]",
+     "Αποδόσεις"
+    ],
+    [
+     "`throughput_eur_per_mwh`",
+     "€/MWh",
+     "Κόστος ροής (φθορά) σε φόρτιση και εκφόρτιση"
+    ],
+    [
+     "`grid_charge`, `renewable_gen_id`",
+     "—",
+     "Φόρτιση από δίκτυο ή μόνο από τη συνδεδεμένη ΑΠΕ"
+    ],
+    [
+     "`self_discharge_per_hour`",
+     "κλάσμα/h",
+     "Αυτοεκφόρτιση"
+    ],
+    [
+     "`terminal_value_eur_per_mwh`",
+     "€/MWh",
+     "Αξία ενέργειας στο τέλος του ορίζοντα"
+    ],
+    [
+     "`terminal_shortfall_penalty_eur_per_mwh`",
+     "€/MWh",
+     "Μαλακός τελικός στόχος"
+    ],
+    [
+     "`soc_recovery_penalty_eur_per_mwh`",
+     "€/MWh",
+     "Επαναφορά αν η αρχική ενέργεια < ελάχιστο"
+    ],
+    [
+     "`max_cycles_per_horizon`",
+     "κύκλοι",
+     "Όριο ισοδύναμων πλήρων κύκλων"
+    ],
+    [
+     "`export_limit_mw`",
+     "MW",
+     "Όριο σημείου σύνδεσης υβριδικού"
+    ],
+    [
+     "`power_availability`",
+     "$H$ κλάσματα",
+     "Ωριαία διαθεσιμότητα ισχύος"
+    ],
+    [
+     "`reserve`",
+     "—",
+     "products, sustain_minutes, capacity_cost_eur_per_mw_h"
+    ]
+   ]
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Επικύρωση"
+  },
+  {
+   "type": "paragraph",
+   "text": "Η `validate()` (`mms/stochastic/data.py`) **δεν επιδιορθώνει** δεδομένα· απορρίπτει με μήνυμα που δείχνει τη διαδρομή του λάθους. Ελέγχει μεταξύ άλλων: μήκη χρονοσειρών, πιθανότητες στο $[0,1]$ με άθροισμα 1 (χωρίς κανονικοποίηση), μη πεπερασμένους αριθμούς, ΑΠΕ πάνω από τη διαθεσιμότητα (bounded), συνέπεια αρχικής κατάστασης, άγνωστα πεδία, συνέπεια του δέντρου, εφικτότητα του τελικού στόχου αποθήκευσης, και ότι η σύνδεση εφεδρειών έχει τουλάχιστον ένα ενεργό προϊόν. Το σχήμα `schemas/stochastic_extension.schema.json` περιγράφει τη δομή και ένα test εξασφαλίζει ότι συμφωνεί με τον επικυρωτή."
+  },
+  {
+   "type": "code",
+   "language": "text",
+   "text": "python stochastic_main.py examples/small_tree_bess.json --validate-only\npython stochastic_main.py examples/small_tree_bess.json -o runs/tree.json\npython stochastic_main.py examples/small_stochastic.json --compare --evaluation-scenarios examples/held_out_scenarios.json -o runs/comparison.json"
+  },
+  {
+   "type": "box",
+   "kind": "note",
+   "title": "Παραγωγή των παραδειγμάτων",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Όλα τα παραδείγματα παράγονται αναπαραγώγιμα με `python tools/make_examples.py` από το αρχικό αρχείο της Ρόδου (με σταθερούς σπόρους τυχαιότητας). Είναι συνθετικά, 4 ωρών, για διδακτικούς και ελεγκτικούς σκοπούς — όχι λειτουργικά δεδομένα."
+    }
+   ]
+  }
+ ]
+}

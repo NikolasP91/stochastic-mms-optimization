@@ -1,0 +1,1068 @@
+{
+  "Cost_parameters": {
+    "x_load": 20000,
+    "x_primary_APR_up": 10000,
+    "x_primary_APR_down": 10000,
+    "x_secondary_APR_up": 5000,
+    "x_secondary_APR_down": 5000,
+    "x_tertiary_APR_up": 3000,
+    "x_tertiary_APR_down": 3000,
+    "x_forbidden_zones": 50000,
+    "x_ramp": 10000,
+    "x_must_run": 100000,
+    "x_min_transition_oper_states_a": 10000,
+    "x_min_transition_oper_states_a_left": 10000,
+    "x_min_transition_oper_states_b": 10000,
+    "x_min_transition_oper_states_b_left": 10000,
+    "x_max_oper_state_time_b": 10000,
+    "x_max_oper_state_time_b_left": 10000,
+    "x_min_transition_states": 10000,
+    "x_min_transition_states_left": 10000,
+    "x_Grid_Capacity": 10000,
+    "x_testing_mode": 10000,
+    "x_RES_PV_power_plus": 100000,
+    "x_RES_PV_power_minus": 100000,
+    "x_OOS_more_than": 10000,
+    "x_OOS_less_than": 10000
+  },
+  "Other_coefficients": {
+    "primary_upwards": [
+      [
+        1,
+        1.5
+      ],
+      [
+        30,
+        0.15
+      ],
+      5,
+      0.03
+    ],
+    "primary_downwards": [
+      [
+        1,
+        0.02
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      5,
+      0.04
+    ],
+    "secondary_upwards": [
+      [
+        2,
+        0.02
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      0.044,
+      0.03
+    ],
+    "secondary_downwards": [
+      [
+        2,
+        0.1
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      7,
+      4
+    ],
+    "tertiary_upwards": [
+      [
+        2,
+        0.02
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      0.034,
+      0.025
+    ],
+    "tertiary_downwards": [
+      [
+        2,
+        0.1
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      7,
+      4
+    ],
+    "x_res_pv_dynamic": 0.35,
+    "include_PV": 1,
+    "PV_dispatch_method": 0,
+    "PV_Participation_coefficient": 50
+  },
+  "constraints": {
+    "min_max_constraint": true,
+    "load_production_balance_constraint": true,
+    "operating_states_min_transition_time_between_states_constraint_a": true,
+    "operating_states_min_transition_time_between_states_constraint_b": true,
+    "operating_states_max_transition_time_between_states_constraint_b": true,
+    "state_min_time_constraint": true,
+    "APRR_calculations": {
+      "calculation-method_upwards": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        0,
+        0
+      ],
+      "calculation-method_downwards": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        0,
+        0
+      ]
+    },
+    "primary_active_power_reserves_constraint": true,
+    "secondary_active_power_reserves_constraint": true,
+    "tertiary_active_power_reserves_constraint": true,
+    "ramp_up_down_constraints": true,
+    "forbidden_zones_constraint": true,
+    "must_run_units_constraint": true,
+    "allowed_thermal_states_transition_constraints": true,
+    "res_pv_dispatch_variables_constraints": false,
+    "testing_mode_constraints": false,
+    "OOS_mode_constraints": false
+  },
+  "optimization_parameters": {
+    "solver": "highs",
+    "require_optimal": true,
+    "big_m": "auto",
+    "cost_curve_time_unit": "euro_per_mwh",
+    "time_resolution": {
+      "subperiod_operating_state_policy": "embed_transient",
+      "transient_state_roles": [
+        "transient",
+        "synchronization",
+        "desynchronization",
+        "startup",
+        "shutdown"
+      ],
+      "allow_initial_state_embedding": false,
+      "allow_operational_state_embedding": false,
+      "allow_shutdown_state_embedding": false
+    },
+    "highs_options": {
+      "user_objective_scale": -4
+    },
+    "early_stopping": {
+      "time_limit": null
+    }
+  },
+  "Generating_Units": [
+    {
+      "gen_id": 0,
+      "agc_configuration": {
+        "isConnected": 1,
+        "minLoad": 0,
+        "maxLoad": 12
+      },
+      "mustRun": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "testing_mode_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_testing_mode": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_less_than_enabled": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_less_than": [
+        14,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_more_than_enabled": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_more_than": [
+        14,
+        0,
+        0,
+        0
+      ],
+      "forbidden_zones": [],
+      "comments": "Thermo: synthetic unit 0",
+      "Production_Forecast": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_power(MW)": 12,
+      "min_power(MW)": 0,
+      "ramp_up_rate(kW/min)": 1000,
+      "ramp_down_rate(kW/min)": 1000,
+      "current_Power(MW)": 0,
+      "availability": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "var_gen_cost(euro/MW)": [
+        [
+          0,
+          6.0,
+          12
+        ],
+        [
+          0,
+          40,
+          60
+        ]
+      ],
+      "cost_curve_source": {
+        "type": "manual_pwl",
+        "reference": "Synthetic educational data",
+        "currency": "EUR",
+        "basis": "euro_per_mwh"
+      },
+      "start_up_cost(euro)": 250,
+      "shut_down_cost(euro)": 0,
+      "state": 0,
+      "Primary_Active_Power_Reserves(MW)": [
+        6.0,
+        6.0
+      ],
+      "Secondary_Active_Power_Reserves(MW)": [
+        6.0,
+        6.0
+      ],
+      "Tertiary_Active_Power_Reserves(MW)": [
+        6.0,
+        6.0
+      ],
+      "Primary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Secondary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Tertiary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "operating-states": [
+        {
+          "id": 0,
+          "isEnabled": true,
+          "isShutdown": true,
+          "isOperational": false,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 0,
+          "enabled-cost": 0
+        },
+        {
+          "id": 1,
+          "isEnabled": false,
+          "isShutdown": false,
+          "isOperational": true,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 12,
+          "user_min_power": 0,
+          "user_max_power": 12,
+          "enabled-cost": 0
+        }
+      ],
+      "state-transitions": [
+        {
+          "from": 0,
+          "transitions": {
+            "value": 1,
+            "min-transition-time": 120
+          }
+        },
+        {
+          "from": 1,
+          "transitions": {
+            "value": 0,
+            "min-transition-time": 60
+          }
+        }
+      ],
+      "operating-state-transitions": [
+        {
+          "from": 0,
+          "transitions": [
+            {
+              "id": 1,
+              "transition-cost": 0
+            }
+          ]
+        },
+        {
+          "from": 1,
+          "transitions": [
+            {
+              "id": 0,
+              "transition-cost": 0
+            }
+          ]
+        }
+      ],
+      "Accepts_SP": 1
+    },
+    {
+      "gen_id": 1,
+      "agc_configuration": {
+        "isConnected": 1,
+        "minLoad": 0,
+        "maxLoad": 8
+      },
+      "mustRun": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "testing_mode_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_testing_mode": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_less_than_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_less_than": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_more_than_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_more_than": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "forbidden_zones": [],
+      "comments": "Thermo: synthetic unit 1",
+      "Production_Forecast": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_power(MW)": 8,
+      "min_power(MW)": 0,
+      "ramp_up_rate(kW/min)": 1000,
+      "ramp_down_rate(kW/min)": 1000,
+      "current_Power(MW)": 0,
+      "availability": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "var_gen_cost(euro/MW)": [
+        [
+          0,
+          4.0,
+          8
+        ],
+        [
+          0,
+          90,
+          120
+        ]
+      ],
+      "cost_curve_source": {
+        "type": "manual_pwl",
+        "reference": "Synthetic educational data",
+        "currency": "EUR",
+        "basis": "euro_per_mwh"
+      },
+      "start_up_cost(euro)": 10,
+      "shut_down_cost(euro)": 0,
+      "state": 0,
+      "Primary_Active_Power_Reserves(MW)": [
+        4.0,
+        4.0
+      ],
+      "Secondary_Active_Power_Reserves(MW)": [
+        4.0,
+        4.0
+      ],
+      "Tertiary_Active_Power_Reserves(MW)": [
+        4.0,
+        4.0
+      ],
+      "Primary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Secondary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Tertiary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "operating-states": [
+        {
+          "id": 0,
+          "isEnabled": true,
+          "isShutdown": true,
+          "isOperational": false,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 0,
+          "enabled-cost": 0
+        },
+        {
+          "id": 1,
+          "isEnabled": false,
+          "isShutdown": false,
+          "isOperational": true,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 8,
+          "user_min_power": 0,
+          "user_max_power": 8,
+          "enabled-cost": 0
+        }
+      ],
+      "state-transitions": [
+        {
+          "from": 0,
+          "transitions": {
+            "value": 1,
+            "min-transition-time": 120
+          }
+        },
+        {
+          "from": 1,
+          "transitions": {
+            "value": 0,
+            "min-transition-time": 60
+          }
+        }
+      ],
+      "operating-state-transitions": [
+        {
+          "from": 0,
+          "transitions": [
+            {
+              "id": 1,
+              "transition-cost": 0
+            }
+          ]
+        },
+        {
+          "from": 1,
+          "transitions": [
+            {
+              "id": 0,
+              "transition-cost": 0
+            }
+          ]
+        }
+      ],
+      "Accepts_SP": 1
+    },
+    {
+      "gen_id": 2,
+      "agc_configuration": {
+        "isConnected": 0,
+        "minLoad": 0,
+        "maxLoad": 6
+      },
+      "mustRun": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_less_than_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_less_than": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_more_than_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_more_than": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "forbidden_zones": [],
+      "comments": "RES: synthetic unit 2",
+      "Accepts_SP": 1,
+      "Production_Forecast": [
+        2,
+        3,
+        1,
+        2
+      ],
+      "max_power(MW)": 6,
+      "min_power(MW)": 0,
+      "ramp_up_rate(kW/min)": 1000,
+      "ramp_down_rate(kW/min)": 1000,
+      "current_Power(MW)": 0,
+      "availability": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "var_gen_cost(euro/MW)": [
+        [
+          0,
+          3.0,
+          6
+        ],
+        [
+          0,
+          90,
+          120
+        ]
+      ],
+      "start_up_cost(euro)": 10,
+      "shut_down_cost(euro)": 0,
+      "state": 0,
+      "Primary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Secondary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Tertiary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Primary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Secondary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Tertiary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "operating-states": [
+        {
+          "id": 0,
+          "isEnabled": true,
+          "isShutdown": true,
+          "isOperational": false,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 0,
+          "enabled-cost": 0
+        },
+        {
+          "id": 1,
+          "isEnabled": false,
+          "isShutdown": false,
+          "isOperational": true,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 6,
+          "user_min_power": 0,
+          "user_max_power": 6,
+          "enabled-cost": 0
+        }
+      ],
+      "state-transitions": [
+        {
+          "from": 0,
+          "transitions": {
+            "value": 1,
+            "min-transition-time": 0
+          }
+        },
+        {
+          "from": 1,
+          "transitions": {
+            "value": 0,
+            "min-transition-time": 60
+          }
+        }
+      ],
+      "operating-state-transitions": [
+        {
+          "from": 0,
+          "transitions": [
+            {
+              "id": 1,
+              "transition-cost": 0
+            }
+          ]
+        },
+        {
+          "from": 1,
+          "transitions": [
+            {
+              "id": 0,
+              "transition-cost": 0
+            }
+          ]
+        }
+      ],
+      "cost_curve_source": {
+        "type": "manual_pwl",
+        "reference": "Synthetic educational data",
+        "currency": "EUR",
+        "basis": "euro_per_mwh"
+      }
+    },
+    {
+      "gen_id": 3,
+      "agc_configuration": {
+        "isConnected": 0,
+        "minLoad": 0,
+        "maxLoad": 3
+      },
+      "mustRun": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_less_than_enabled": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_less_than": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "OOS_mode_more_than_enabled": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "power_production_in_OOS_mode_more_than": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "forbidden_zones": [],
+      "comments": "PV: synthetic unit 3",
+      "Accepts_SP": 1,
+      "Production_Forecast": [
+        0,
+        1,
+        2,
+        0
+      ],
+      "max_power(MW)": 3,
+      "min_power(MW)": 0,
+      "ramp_up_rate(kW/min)": 1000,
+      "ramp_down_rate(kW/min)": 1000,
+      "current_Power(MW)": 0,
+      "availability": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "var_gen_cost(euro/MW)": [
+        [
+          0,
+          1.5,
+          3
+        ],
+        [
+          0,
+          90,
+          120
+        ]
+      ],
+      "start_up_cost(euro)": 10,
+      "shut_down_cost(euro)": 0,
+      "state": 0,
+      "Primary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Secondary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Tertiary_Active_Power_Reserves(MW)": [
+        0,
+        0
+      ],
+      "Primary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Secondary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "Tertiary_APR_Cost(euro/MW)": [
+        0.01,
+        0.01
+      ],
+      "operating-states": [
+        {
+          "id": 0,
+          "isEnabled": true,
+          "isShutdown": true,
+          "isOperational": false,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 0,
+          "enabled-cost": 0
+        },
+        {
+          "id": 1,
+          "isEnabled": false,
+          "isShutdown": false,
+          "isOperational": true,
+          "isTransient": false,
+          "min-power": 0,
+          "max-power": 3,
+          "user_min_power": 0,
+          "user_max_power": 3,
+          "enabled-cost": 0
+        }
+      ],
+      "state-transitions": [
+        {
+          "from": 0,
+          "transitions": {
+            "value": 1,
+            "min-transition-time": 0
+          }
+        },
+        {
+          "from": 1,
+          "transitions": {
+            "value": 0,
+            "min-transition-time": 60
+          }
+        }
+      ],
+      "operating-state-transitions": [
+        {
+          "from": 0,
+          "transitions": [
+            {
+              "id": 1,
+              "transition-cost": 0
+            }
+          ]
+        },
+        {
+          "from": 1,
+          "transitions": [
+            {
+              "id": 0,
+              "transition-cost": 0
+            }
+          ]
+        }
+      ],
+      "cost_curve_source": {
+        "type": "manual_pwl",
+        "reference": "Synthetic educational data",
+        "currency": "EUR",
+        "basis": "euro_per_mwh"
+      }
+    }
+  ],
+  "Time_granularity": 60,
+  "Load_forecast": [
+    0,
+    3,
+    11,
+    12,
+    10
+  ],
+  "stochastic": {
+    "description": "Synthetic 4-hour three-stage tree with a hybrid BESS; not operational data",
+    "scenarios": [
+      {
+        "id": "tree_root_s2b0_s3b0",
+        "probability": 0.25,
+        "tree_path": [
+          "root",
+          "s2b0",
+          "s3b0"
+        ],
+        "load_mw": [
+          3.0046723519375313,
+          10.975257993573095,
+          11.800687118754606,
+          9.825110910508595
+        ],
+        "renewables_mw": {
+          "2": [
+            1.9875403948332493,
+            3.026991279738442,
+            1.0664376270817975,
+            2.1399112715931237
+          ],
+          "3": [
+            0,
+            1.0089970932461474,
+            2.132875254163595,
+            0
+          ]
+        }
+      },
+      {
+        "id": "tree_root_s2b0_s3b1",
+        "probability": 0.25,
+        "tree_path": [
+          "root",
+          "s2b0",
+          "s3b1"
+        ],
+        "load_mw": [
+          3.0046723519375313,
+          10.975257993573095,
+          12.187923389723638,
+          10.200142340119815
+        ],
+        "renewables_mw": {
+          "2": [
+            1.9875403948332493,
+            3.026991279738442,
+            0.9373588700921209,
+            1.839886127904148
+          ],
+          "3": [
+            0,
+            1.0089970932461474,
+            1.8747177401842419,
+            0
+          ]
+        }
+      },
+      {
+        "id": "tree_root_s2b1_s3b0",
+        "probability": 0.25,
+        "tree_path": [
+          "root",
+          "s2b1",
+          "s3b0"
+        ],
+        "load_mw": [
+          3.0046723519375313,
+          10.959791208737347,
+          12.15935106572319,
+          10.152208965906226
+        ],
+        "renewables_mw": {
+          "2": [
+            1.9875403948332493,
+            3.0438641359228935,
+            0.9468829780922695,
+            1.8782328272750182
+          ],
+          "3": [
+            0,
+            1.0146213786409646,
+            1.893765956184539,
+            0
+          ]
+        }
+      },
+      {
+        "id": "tree_root_s2b1_s3b1",
+        "probability": 0.25,
+        "tree_path": [
+          "root",
+          "s2b1",
+          "s3b1"
+        ],
+        "load_mw": [
+          3.0046723519375313,
+          10.959791208737347,
+          12.037580295749294,
+          10.05590743903744
+        ],
+        "renewables_mw": {
+          "2": [
+            1.9875403948332493,
+            3.0438641359228935,
+            0.9874732347502355,
+            1.9552740487700468
+          ],
+          "3": [
+            0,
+            1.0146213786409646,
+            1.974946469500471,
+            0
+          ]
+        }
+      }
+    ],
+    "risk": {
+      "alpha": 0.9,
+      "weight": 0
+    },
+    "reserve_link": true,
+    "reserve_products": {
+      "primary": {
+        "response_minutes": 1,
+        "activation_eur_per_mwh_up": 1,
+        "activation_eur_per_mwh_down": 1,
+        "balancing_deployment": false
+      },
+      "secondary": {
+        "response_minutes": 5,
+        "activation_eur_per_mwh_up": 1,
+        "activation_eur_per_mwh_down": 1
+      },
+      "tertiary": {
+        "response_minutes": 15,
+        "activation_eur_per_mwh_up": 1,
+        "activation_eur_per_mwh_down": 1
+      }
+    },
+    "slack_policy": {
+      "mode": "bounded",
+      "caps": {
+        "s_load_minus_": 20,
+        "s_primary_APR_": 10,
+        "s_secondary_APR_": 10,
+        "s_tertiary_APR_": 10,
+        "s_power_plus_": 10
+      }
+    },
+    "storage": [
+      {
+        "id": "hybrid_wind_store",
+        "capacity_mwh": 4,
+        "min_mwh": 0,
+        "initial_mwh": 2,
+        "terminal_min_mwh": 1,
+        "charge_mw": 2,
+        "discharge_mw": 2,
+        "charge_efficiency": 0.95,
+        "discharge_efficiency": 0.95,
+        "throughput_eur_per_mwh": 2,
+        "grid_charge": false,
+        "renewable_gen_id": 2,
+        "terminal_value_eur_per_mwh": 45,
+        "self_discharge_per_hour": 0.005,
+        "max_cycles_per_horizon": 1.5,
+        "export_limit_mw": 6,
+        "reserve": {
+          "products": {
+            "primary": [
+              "up",
+              "down"
+            ],
+            "secondary": [
+              "up",
+              "down"
+            ]
+          },
+          "sustain_minutes": {
+            "primary": 15,
+            "secondary": 30
+          },
+          "capacity_cost_eur_per_mw_h": {
+            "up": 0.5,
+            "down": 0.5
+          }
+        }
+      }
+    ],
+    "scenario_tree": {
+      "stage_start_hours": [
+        1,
+        2,
+        3
+      ]
+    },
+    "cost_policy": {
+      "legacy_time_scaled_costs": "per_hour",
+      "thermal_online_charge_eur_per_h": 100,
+      "renewable_curtailment_eur_per_mwh": 1000
+    },
+    "reserve_link_mode": "deploy_from_procured"
+  }
+}

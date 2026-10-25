@@ -1,0 +1,21 @@
+# Streamlit configuration for the stochastic RDAS/DS GUI (run from the project root).
+[theme]
+base = "dark"
+primaryColor = "#2dd4bf"
+backgroundColor = "#0f1110"
+secondaryBackgroundColor = "#1a1a19"
+textColor = "#f0efec"
+font = "sans serif"
+borderColor = "#2c2c2a"
+showWidgetBorder = true
+baseRadius = "0.6rem"
+
+[server]
+headless = true
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

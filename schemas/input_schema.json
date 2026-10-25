@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MMS Optimization Input",
+  "type": "object",
+  "required": [
+    "Cost_parameters",
+    "Other_coefficients",
+    "constraints",
+    "optimization_parameters",
+    "Generating_Units",
+    "Time_granularity",
+    "Load_forecast"
+  ],
+  "properties": {
+    "run_mode": {
+      "enum": ["RDAS", "DS"],
+      "description": "Scheduling mode. RTD is intentionally unsupported in this project."
+    },
+    "Cost_parameters": { "type": "object" },
+    "Other_coefficients": { "type": "object" },
+    "constraints": { "type": "object" },
+    "optimization_parameters": {
+      "type": "object",
+      "properties": {
+        "solver": { "enum": ["highs", "cbc"] },
+        "require_optimal": { "type": "boolean" },
+        "big_m": {
+          "oneOf": [
+            { "const": "auto" },
+            { "type": "number", "exclusiveMinimum": 0 }
+          ]
+        },
+        "cost_curve_time_unit": {
+          "enum": [
+            "euro_per_mw_per_minute",
+            "euro_per_mwh",
+            "euro_per_dispatch_period"
+          ],
+          "description": "Unit convention for thermal PWL cost-curve coefficients."
+        },
+        "cost_curve_time_multiplier": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Optional explicit multiplier overriding cost_curve_time_unit."
+        },
+        "thermal_cost_curve_generation": {
+          "type": "object",
+          "description": "Optional defaults for generating thermal PWL cost curves from quadratic coefficients.",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "replace_existing": { "type": "boolean" },
+            "segments": { "type": "integer", "minimum": 1 },
+            "breakpoints": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "number" }
+            }
+          }
+        },
+        "time_resolution": {
+          "type": "object",
+          "description": "Optional controls for RDAS/DS sub-period operating-state handling.",
+          "properties": {
+            "subperiod_operating_state_policy": {
+              "enum": ["embed_transient", "period_rounding"],
+              "description": "Embed explicitly marked sub-period transient states into transition arcs, or leave all states as period-level states."
+            },
+            "transient_state_roles": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "State_role values treated as explicit transient-state markers."
+            },
+            "allow_initial_state_embedding": { "type": "boolean" },
+            "allow_operational_state_embedding": { "type": "boolean" },
+            "allow_shutdown_state_embedding": { "type": "boolean" }
+          }
+        },
+        "early_stopping": {
+          "type": "object",
+          "properties": {
+            "time_limit": {
+              "oneOf": [
+                { "type": "null" },
+                { "type": "number", "exclusiveMinimum": 0 }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Generating_Units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "gen_id",
+          "comments",
+          "state",
+          "current_Power(MW)",
+          "availability",
+          "Production_Forecast",
+          "max_power(MW)",
+          "min_power(MW)",
+          "operating-states",
+          "operating-state-transitions"
+        ],
+        "properties": {
+          "operating-states": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "isTransient": {
+                  "type": "boolean",
+                  "description": "Explicit user switch for transient-state bypass eligibility. When present, false overrides state_role and time_resolution_class defaults."
+                },
+                "time_resolution_class": {
+                  "type": "string",
+                  "description": "Optional legacy marker; 'transient' is treated as transient only when isTransient is omitted."
+                },
+                "state_role": {
+                  "type": "string",
+                  "description": "Optional semantic role. Roles configured in optimization_parameters.time_resolution.transient_state_roles are treated as transient only when isTransient is omitted."
+                }
+              }
+            }
+          },
+          "var_gen_cost(euro/MW)": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "number" },
+                "description": "Strictly increasing PWL breakpoints in MW for thermal units."
+              },
+              {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "number", "minimum": 0 },
+                "description": "Base cost at first breakpoint followed by marginal segment costs."
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "quadratic_cost_coefficients": {
+            "type": "object",
+            "description": "Optional source quadratic cost curve C(P)=aP^2+bP+c used to generate or verify PWL costs.",
+            "required": ["a", "b", "c"],
+            "properties": {
+              "a": { "type": "number" },
+              "b": { "type": "number" },
+              "c": { "type": "number" }
+            }
+          },
+          "cost_curve_generation": {
+            "type": "object",
+            "description": "Optional per-unit controls for quadratic-to-PWL generation.",
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "replace_existing": { "type": "boolean" },
+              "segments": { "type": "integer", "minimum": 1 },
+              "breakpoints": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "number" }
+              }
+            }
+          },
+          "cost_curve_source": {
+            "type": "object",
+            "description": "Optional provenance for thermal production-cost data.",
+            "properties": {
+              "type": {
+                "enum": [
+                  "manual_pwl",
+                  "generated_from_quadratic",
+                  "offer_curve",
+                  "measured_heat_rate",
+                  "other"
+                ]
+              },
+              "reference": { "type": "string" },
+              "currency": { "type": "string" },
+              "basis": { "type": "string" },
+              "method": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "Time_granularity": { "type": "number", "exclusiveMinimum": 0 },
+    "Load_forecast": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "number", "minimum": 0 }
+    }
+  }
+}

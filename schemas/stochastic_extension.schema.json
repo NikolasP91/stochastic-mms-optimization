@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Added stochastic section for the MMS legacy input",
+  "description": "Structural contract only. Cross-field rules (series lengths, probabilities summing to 1, tree data consistency, SOC reachability, enabled reserve flags) are enforced by mms/stochastic/data.py:validate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scenarios", "slack_policy"],
+  "properties": {
+    "description": {"type": "string"},
+    "scenarios": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "probability", "load_mw", "renewables_mw"],
+        "properties": {
+          "id": {"$ref": "#/$defs/identifier"},
+          "probability": {"type": "number", "minimum": 0, "maximum": 1},
+          "load_mw": {"$ref": "#/$defs/series"},
+          "renewables_mw": {"type": "object", "propertyNames": {"$ref": "#/$defs/unitKey"}, "additionalProperties": {"$ref": "#/$defs/series"}},
+          "tree_path": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/identifier"},
+                        "description": "Node label per stage; equal prefixes = equal information. Requires scenario_tree."}
+        }
+      }
+    },
+    "scenario_tree": {
+      "type": "object", "additionalProperties": false, "required": ["stage_start_hours"],
+      "description": "Multistage information structure. Stage k covers hours stage_start_hours[k] .. next start - 1.",
+      "properties": {"stage_start_hours": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}}}
+    },
+    "risk": {
+      "type": "object", "additionalProperties": false,
+      "properties": {"alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+                     "weight": {"type": "number", "minimum": 0}}
+    },
+    "reserve_link": {"type": "boolean"},
+    "reserve_link_mode": {"enum": ["post_balancing_headroom", "deploy_from_procured"]},
+    "reserve_products": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "primary": {"$ref": "#/$defs/product"},
+        "secondary": {"$ref": "#/$defs/product"},
+        "tertiary": {"$ref": "#/$defs/product"}
+      }
+    },
+    "cost_policy": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "thermal_online_charge_eur_per_h": {"type": "number", "minimum": 0},
+        "legacy_time_scaled_costs": {"enum": ["legacy", "per_hour"]},
+        "renewable_curtailment_eur_per_mwh": {"type": "number", "minimum": 0}
+      }
+    },
+    "slack_policy": {
+      "type": "object", "additionalProperties": false, "required": ["mode"],
+      "properties": {"mode": {"enum": ["bounded", "legacy"]},
+                     "caps": {"type": "object", "propertyNames": {"$ref": "#/$defs/identifier"}, "additionalProperties": {"type": "number", "minimum": 0}}},
+      "if": {"properties": {"mode": {"const": "legacy"}}},
+      "then": {"properties": {"caps": {"maxProperties": 0}}}
+    },
+    "storage": {"type": "array", "items": {"$ref": "#/$defs/storage"}},
+    "maximum_on": {"type": "object", "propertyNames": {"$ref": "#/$defs/unitKey"}, "additionalProperties": {
+      "type": "object", "additionalProperties": false, "required": ["hours", "elapsed_hours"],
+      "properties": {"hours": {"type": "integer", "minimum": 1},
+                     "elapsed_hours": {"type": "integer", "minimum": 0,
+                                       "description": "Consecutive ON hours up to and including t=0 (>= 1 for an online unit)."},
+                     "violation_penalty_eur_per_h": {"type": "number", "exclusiveMinimum": 0}}
+    }},
+    "initial_operating_obligations": {"type": "object", "propertyNames": {"$ref": "#/$defs/unitKey"}, "additionalProperties": {
+      "type": "object", "additionalProperties": false, "required": ["state_id", "maximum_remaining_hours"],
+      "properties": {"state_id": {"type": "integer", "minimum": 0}, "maximum_remaining_hours": {"type": "integer", "minimum": 0}}
+    }}
+  },
+  "$defs": {
+    "identifier": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "unitKey": {"type": "string", "pattern": "^(0|[1-9][0-9]*)$"},
+    "series": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0}},
+    "fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "product": {
+      "type": "object", "additionalProperties": false, "required": ["response_minutes", "activation_eur_per_mwh_up", "activation_eur_per_mwh_down"],
+      "properties": {
+        "response_minutes": {"type": "number", "exclusiveMinimum": 0},
+        "activation_eur_per_mwh_up": {"type": "number", "minimum": 0},
+        "activation_eur_per_mwh_down": {"type": "number", "minimum": 0},
+        "balancing_deployment": {"type": "boolean"}
+      }
+    },
+    "storageReserve": {
+      "type": "object", "additionalProperties": false, "required": ["products", "sustain_minutes"],
+      "properties": {
+        "products": {"type": "object", "additionalProperties": false, "minProperties": 1,
+                     "properties": {"primary": {"$ref": "#/$defs/directions"}, "secondary": {"$ref": "#/$defs/directions"},
+                                    "tertiary": {"$ref": "#/$defs/directions"}}},
+        "sustain_minutes": {"type": "object", "additionalProperties": false,
+                            "properties": {"primary": {"type": "number", "exclusiveMinimum": 0},
+                                           "secondary": {"type": "number", "exclusiveMinimum": 0},
+                                           "tertiary": {"type": "number", "exclusiveMinimum": 0}}},
+        "capacity_cost_eur_per_mw_h": {"type": "object", "additionalProperties": false,
+                                       "properties": {"up": {"type": "number", "minimum": 0}, "down": {"type": "number", "minimum": 0}}}
+      }
+    },
+    "directions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["up", "down"]}},
+    "storage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "capacity_mwh", "min_mwh", "initial_mwh", "terminal_min_mwh", "charge_mw", "discharge_mw", "charge_efficiency", "discharge_efficiency", "throughput_eur_per_mwh", "grid_charge"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "capacity_mwh": {"type": "number", "minimum": 0},
+        "min_mwh": {"type": "number", "minimum": 0},
+        "initial_mwh": {"type": "number", "minimum": 0},
+        "terminal_min_mwh": {"type": "number", "minimum": 0},
+        "charge_mw": {"type": "number", "minimum": 0},
+        "discharge_mw": {"type": "number", "minimum": 0},
+        "charge_efficiency": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "discharge_efficiency": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "throughput_eur_per_mwh": {"type": "number", "minimum": 0},
+        "grid_charge": {"type": "boolean"},
+        "renewable_gen_id": {"type": "integer", "minimum": 0},
+        "self_discharge_per_hour": {"type": "number", "minimum": 0, "exclusiveMaximum": 1},
+        "terminal_value_eur_per_mwh": {"type": "number", "minimum": 0},
+        "terminal_shortfall_penalty_eur_per_mwh": {"type": "number", "exclusiveMinimum": 0},
+        "soc_recovery_penalty_eur_per_mwh": {"type": "number", "exclusiveMinimum": 0},
+        "max_cycles_per_horizon": {"type": "number", "exclusiveMinimum": 0},
+        "export_limit_mw": {"type": "number", "minimum": 0},
+        "power_availability": {"type": "array", "items": {"$ref": "#/$defs/fraction"}},
+        "reserve": {"$ref": "#/$defs/storageReserve"}
+      },
+      "allOf": [
+        {"if": {"properties": {"grid_charge": {"const": false}}, "required": ["grid_charge"]},
+         "then": {"required": ["renewable_gen_id"]}},
+        {"if": {"required": ["export_limit_mw"]}, "then": {"required": ["renewable_gen_id"]}}
+      ]
+    }
+  }
+}

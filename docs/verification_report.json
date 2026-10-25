@@ -1,0 +1,825 @@
+{
+  "date": "2026-10-23",
+  "python": "3.13.7",
+  "packages": {
+    "pulp": "3.3.0",
+    "highspy": "1.15.1",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6"
+  },
+  "original_single_scenario": {
+    "status": "Optimal",
+    "operational_status": "no_reported_violations",
+    "model_notes": [
+      {
+        "code": "FULL_PATH_RECOURSE",
+        "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+      },
+      {
+        "code": "LEGACY_REGRESSION_POLICY",
+        "message": "Original slack domains and known modeling limitations are preserved for regression; this policy is not operational certification."
+      }
+    ],
+    "run_metadata": {
+      "created_at_utc": "2026-10-23T08:30:27.694097+00:00",
+      "python": "3.13.7",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "package_versions": {
+        "pulp": "3.3.0",
+        "highspy": "1.15.1",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6"
+      },
+      "input_sha256": "f4776109a2d7a307bd77a7e264cb67dc8cab952c15aed77d7111cc4bf5495cea",
+      "fixed_first_stage_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+      "source_files": {
+        "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+        "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+        "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+        "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+        "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+        "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+        "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+        "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+        "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+        "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+        "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+        "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+        "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+        "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+        "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+        "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+        "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+        "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+        "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+        "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+        "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+        "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+        "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+        "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+        "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+        "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+        "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+        "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+        "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+        "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+        "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+      },
+      "solver": "highs",
+      "solver_settings": {
+        "time_limit_seconds": null,
+        "relative_mip_gap": 0,
+        "threads": 1
+      }
+    },
+    "expected_cost_eur": 382562.14962105255,
+    "objective_eur": 382562.14962105255,
+    "cvar_eur": 382562.14962105255,
+    "first_stage_cost_eur": 303048.0,
+    "expected_recourse_cost_eur": 79514.14962105255,
+    "expected_metrics": {
+      "unserved_mwh": 0.0,
+      "curtailed_res_mwh": 23.741105263157912,
+      "reserve_shortfall_mw_hours": 0.0
+    },
+    "build_seconds": 2.6501873999950476,
+    "solve_seconds": 13.041362699994352,
+    "num_variables": 5191,
+    "num_constraints": 12032,
+    "validation": {
+      "passed": true,
+      "max_constraint_residual": 2.4868995751603507e-14,
+      "absolute_tolerance": 1e-05,
+      "checked_constraints": 12032,
+      "violations": [],
+      "objective_reconciliation_residual_eur": 0.0
+    }
+  },
+  "original_known_objective_eur": 382562.14962105,
+  "comparison": {
+    "RP": 25622.614735290612,
+    "EV_objective": 25620.512004372038,
+    "EEV": 28730.29402836211,
+    "EEV_status": "Optimal",
+    "WS": 25620.512004372453,
+    "VSS": 3107.6792930714983,
+    "EVPI": 2.102730918159068,
+    "VSS_decomposition": {
+      "commitment_only": {
+        "EEV": 25622.614735290605,
+        "VSS": -7.275957614183426e-12,
+        "fixed_decisions": 156
+      },
+      "commitment_and_reserves": {
+        "EEV": 26108.00742391262,
+        "VSS": 485.392688622007,
+        "fixed_decisions": 252
+      },
+      "full": {
+        "EEV": 28730.29402836211,
+        "VSS": 3107.6792930714983,
+        "fixed_decisions": 260
+      },
+      "note": "Not additive: each row re-optimizes every unfixed first-stage decision."
+    }
+  },
+  "stochastic_in_sample": {
+    "status": "Optimal",
+    "operational_status": "no_reported_violations",
+    "model_notes": [
+      {
+        "code": "FULL_PATH_RECOURSE",
+        "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+      }
+    ],
+    "run_metadata": {
+      "created_at_utc": "2026-10-23T08:30:09.555126+00:00",
+      "python": "3.13.7",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "package_versions": {
+        "pulp": "3.3.0",
+        "highspy": "1.15.1",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6"
+      },
+      "input_sha256": "46d3d9bda33f1ccca737894948b10e69d528145a79bf70b9fb3d0755e64f0d03",
+      "fixed_first_stage_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+      "source_files": {
+        "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+        "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+        "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+        "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+        "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+        "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+        "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+        "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+        "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+        "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+        "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+        "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+        "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+        "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+        "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+        "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+        "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+        "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+        "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+        "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+        "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+        "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+        "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+        "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+        "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+        "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+        "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+        "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+        "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+        "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+        "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+      },
+      "solver": "highs",
+      "solver_settings": {
+        "time_limit_seconds": null,
+        "relative_mip_gap": 0,
+        "threads": 1
+      }
+    },
+    "expected_cost_eur": 25622.614735290612,
+    "objective_eur": 25622.614735290506,
+    "cvar_eur": 25764.29360998941,
+    "first_stage_cost_eur": 24253.095173399754,
+    "expected_recourse_cost_eur": 1369.5195618908583,
+    "expected_metrics": {
+      "unserved_mwh": 0.0,
+      "curtailed_res_mwh": 2.5905203907920316e-16,
+      "reserve_shortfall_mw_hours": 0.0
+    },
+    "build_seconds": 0.23795290000271052,
+    "solve_seconds": 0.283569399965927,
+    "num_variables": 1733,
+    "num_constraints": 4323,
+    "validation": {
+      "passed": true,
+      "max_constraint_residual": 5.329070518200751e-15,
+      "absolute_tolerance": 1e-05,
+      "checked_constraints": 4323,
+      "violations": [],
+      "objective_reconciliation_residual_eur": 1.0550138540565968e-10
+    }
+  },
+  "deterministic_in_sample": {
+    "status": "Optimal",
+    "operational_status": "degraded",
+    "model_notes": [
+      {
+        "code": "FULL_PATH_RECOURSE",
+        "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+      },
+      {
+        "code": "NONZERO_SLACKS",
+        "message": "The optimum uses permitted constraint relaxations; inspect scenario nonzero_slacks and reliability metrics."
+      }
+    ],
+    "run_metadata": {
+      "created_at_utc": "2026-10-23T08:30:10.309866+00:00",
+      "python": "3.13.7",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "package_versions": {
+        "pulp": "3.3.0",
+        "highspy": "1.15.1",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6"
+      },
+      "input_sha256": "46d3d9bda33f1ccca737894948b10e69d528145a79bf70b9fb3d0755e64f0d03",
+      "fixed_first_stage_sha256": "6da7bed2582c8800e892a4ee51afd6bd595bcec1938cd1aedeff25d838bca923",
+      "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+      "source_files": {
+        "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+        "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+        "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+        "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+        "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+        "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+        "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+        "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+        "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+        "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+        "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+        "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+        "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+        "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+        "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+        "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+        "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+        "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+        "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+        "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+        "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+        "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+        "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+        "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+        "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+        "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+        "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+        "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+        "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+        "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+        "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+      },
+      "solver": "highs",
+      "solver_settings": {
+        "time_limit_seconds": null,
+        "relative_mip_gap": 0,
+        "threads": 1
+      }
+    },
+    "expected_cost_eur": 28730.29402836211,
+    "objective_eur": 28730.294028361997,
+    "cvar_eur": 33381.56567950024,
+    "first_stage_cost_eur": 24252.61267562176,
+    "expected_recourse_cost_eur": 4477.68135274035,
+    "expected_metrics": {
+      "unserved_mwh": 0.11919835199121527,
+      "curtailed_res_mwh": 0.14341462998447202,
+      "reserve_shortfall_mw_hours": 0.03231792443011716
+    },
+    "build_seconds": 0.22178449999773875,
+    "solve_seconds": 0.20511229999829084,
+    "num_variables": 1733,
+    "num_constraints": 4583,
+    "validation": {
+      "passed": true,
+      "max_constraint_residual": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-05,
+      "checked_constraints": 4583,
+      "violations": [],
+      "objective_reconciliation_residual_eur": 1.127773430198431e-10
+    }
+  },
+  "out_of_sample": {
+    "stochastic": {
+      "status": "Optimal",
+      "operational_status": "degraded",
+      "model_notes": [
+        {
+          "code": "FULL_PATH_RECOURSE",
+          "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+        },
+        {
+          "code": "NONZERO_SLACKS",
+          "message": "The optimum uses permitted constraint relaxations; inspect scenario nonzero_slacks and reliability metrics."
+        }
+      ],
+      "run_metadata": {
+        "created_at_utc": "2026-10-23T08:30:33.427399+00:00",
+        "python": "3.13.7",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "package_versions": {
+          "pulp": "3.3.0",
+          "highspy": "1.15.1",
+          "numpy": "2.5.4",
+          "pandas": "3.0.6"
+        },
+        "input_sha256": "99de8b4a8d5c31524e163b25c35e7e5f7b8ea7b51291199959dda7b83d54587d",
+        "fixed_first_stage_sha256": "9af6e4ac066180ecbce54fa95208970a9f134db4bca13f51631d5d941f3435da",
+        "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+        "source_files": {
+          "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+          "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+          "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+          "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+          "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+          "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+          "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+          "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+          "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+          "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+          "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+          "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+          "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+          "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+          "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+          "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+          "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+          "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+          "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+          "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+          "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+          "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+          "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+          "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+          "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+          "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+          "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+          "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+          "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+          "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+          "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+        },
+        "solver": "highs",
+        "solver_settings": {
+          "time_limit_seconds": null,
+          "relative_mip_gap": 0,
+          "threads": 1
+        }
+      },
+      "expected_cost_eur": 36282.86396260993,
+      "objective_eur": 36282.86396261,
+      "cvar_eur": 58111.531366977695,
+      "first_stage_cost_eur": 24253.095173399754,
+      "expected_recourse_cost_eur": 12029.768789210179,
+      "expected_metrics": {
+        "unserved_mwh": 0.3577267899991068,
+        "curtailed_res_mwh": 0.12180291299761788,
+        "reserve_shortfall_mw_hours": 0.006933872476860201
+      },
+      "build_seconds": 0.3635346999508329,
+      "solve_seconds": 0.41381679999176413,
+      "num_variables": 2883,
+      "num_constraints": 7633,
+      "validation": {
+        "passed": true,
+        "max_constraint_residual": 8.881784197001252e-16,
+        "absolute_tolerance": 1e-05,
+        "checked_constraints": 7633,
+        "violations": [],
+        "objective_reconciliation_residual_eur": 6.548361852765083e-11
+      }
+    },
+    "deterministic": {
+      "status": "Optimal",
+      "operational_status": "degraded",
+      "model_notes": [
+        {
+          "code": "FULL_PATH_RECOURSE",
+          "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+        },
+        {
+          "code": "NONZERO_SLACKS",
+          "message": "The optimum uses permitted constraint relaxations; inspect scenario nonzero_slacks and reliability metrics."
+        }
+      ],
+      "run_metadata": {
+        "created_at_utc": "2026-10-23T08:30:34.215117+00:00",
+        "python": "3.13.7",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "package_versions": {
+          "pulp": "3.3.0",
+          "highspy": "1.15.1",
+          "numpy": "2.5.4",
+          "pandas": "3.0.6"
+        },
+        "input_sha256": "99de8b4a8d5c31524e163b25c35e7e5f7b8ea7b51291199959dda7b83d54587d",
+        "fixed_first_stage_sha256": "6da7bed2582c8800e892a4ee51afd6bd595bcec1938cd1aedeff25d838bca923",
+        "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+        "source_files": {
+          "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+          "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+          "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+          "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+          "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+          "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+          "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+          "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+          "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+          "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+          "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+          "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+          "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+          "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+          "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+          "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+          "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+          "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+          "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+          "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+          "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+          "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+          "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+          "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+          "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+          "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+          "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+          "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+          "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+          "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+          "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+        },
+        "solver": "highs",
+        "solver_settings": {
+          "time_limit_seconds": null,
+          "relative_mip_gap": 0,
+          "threads": 1
+        }
+      },
+      "expected_cost_eur": 37225.362757048446,
+      "objective_eur": 37225.3627570484,
+      "cvar_eur": 67612.04005732985,
+      "first_stage_cost_eur": 24252.61267562176,
+      "expected_recourse_cost_eur": 12972.750081426686,
+      "expected_metrics": {
+        "unserved_mwh": 0.45197752634921223,
+        "curtailed_res_mwh": 0.18758298405245719,
+        "reserve_shortfall_mw_hours": 0.023657955408009104
+      },
+      "build_seconds": 0.40202229999704286,
+      "solve_seconds": 0.3201248999685049,
+      "num_variables": 2883,
+      "num_constraints": 7633,
+      "validation": {
+        "passed": true,
+        "max_constraint_residual": 8.881784197001252e-16,
+        "absolute_tolerance": 1e-05,
+        "checked_constraints": 7633,
+        "violations": [],
+        "objective_reconciliation_residual_eur": 4.3655745685100555e-11
+      }
+    }
+  },
+  "storage_cvar": {
+    "status": "Optimal",
+    "operational_status": "degraded",
+    "model_notes": [
+      {
+        "code": "FULL_PATH_RECOURSE",
+        "message": "Dispatch uses the complete scenario path; this is a two-stage model."
+      },
+      {
+        "code": "NONZERO_SLACKS",
+        "message": "The optimum uses permitted constraint relaxations; inspect scenario nonzero_slacks and reliability metrics."
+      }
+    ],
+    "run_metadata": {
+      "created_at_utc": "2026-10-23T08:30:28.447462+00:00",
+      "python": "3.13.7",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "package_versions": {
+        "pulp": "3.3.0",
+        "highspy": "1.15.1",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6"
+      },
+      "input_sha256": "7aaed9ee5696fb5d1751b24dfbe4be9c6e3737fa07792769a4659c35f0797c45",
+      "fixed_first_stage_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+      "source_files": {
+        "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+        "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+        "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+        "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+        "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+        "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+        "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+        "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+        "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+        "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+        "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+        "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+        "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+        "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+        "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+        "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+        "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+        "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+        "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+        "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+        "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+        "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+        "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+        "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+        "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+        "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+        "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+        "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+        "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+        "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+        "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+      },
+      "solver": "highs",
+      "solver_settings": {
+        "time_limit_seconds": null,
+        "relative_mip_gap": 0,
+        "threads": 1
+      }
+    },
+    "expected_cost_eur": 20556.83062165868,
+    "objective_eur": 22613.379293205835,
+    "cvar_eur": 20565.486715466934,
+    "first_stage_cost_eur": 18252.68751851787,
+    "expected_recourse_cost_eur": 2304.14310314081,
+    "expected_metrics": {
+      "unserved_mwh": 0.0,
+      "curtailed_res_mwh": 2.5905203907920316e-16,
+      "reserve_shortfall_mw_hours": 0.21420717869584727
+    },
+    "build_seconds": 0.21602550003444776,
+    "solve_seconds": 0.4841004000045359,
+    "num_variables": 1785,
+    "num_constraints": 4377,
+    "validation": {
+      "passed": true,
+      "max_constraint_residual": 8.326672684688674e-16,
+      "absolute_tolerance": 1e-05,
+      "checked_constraints": 4377,
+      "violations": [],
+      "objective_reconciliation_residual_eur": 4.6202330850064754e-10
+    }
+  },
+  "interpretation": "Synthetic paths only. Positive unserved energy/reserve shortage is reported even when algebraic validation passes. Two-stage recourse knows the full path; the tree example restricts recourse to node information.",
+  "tree_bess": {
+    "comparison": {
+      "RP": 1660.3050930759669,
+      "EV_objective": 1659.8378843492383,
+      "EEV": 1737.110633632227,
+      "EEV_status": "Optimal",
+      "WS": 1659.8378843492235,
+      "VSS": 76.80554055626021,
+      "EVPI": 0.46720872674336533
+    },
+    "VSS_decomposition": {
+      "commitment_only": {
+        "EEV": 1660.3050930759662,
+        "VSS": -6.821210263296962e-13,
+        "fixed_decisions": 156
+      },
+      "commitment_and_reserves": {
+        "EEV": 1736.88130717231,
+        "VSS": 76.57621409634316,
+        "fixed_decisions": 268
+      },
+      "full": {
+        "EEV": 1737.110633632227,
+        "VSS": 76.80554055626021,
+        "fixed_decisions": 276
+      },
+      "note": "Not additive: each row re-optimizes every unfixed first-stage decision."
+    },
+    "in_sample": {
+      "status": "Optimal",
+      "operational_status": "no_reported_violations",
+      "model_notes": [
+        {
+          "code": "MULTISTAGE_SCENARIO_TREE",
+          "message": "Recourse decisions are identical for scenarios sharing a tree node; within a stage the stage's data are revealed at its first hour. Commitment and reserve capacity remain first-stage."
+        }
+      ],
+      "run_metadata": {
+        "created_at_utc": "2026-10-23T08:30:29.389827+00:00",
+        "python": "3.13.7",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "package_versions": {
+          "pulp": "3.3.0",
+          "highspy": "1.15.1",
+          "numpy": "2.5.4",
+          "pandas": "3.0.6"
+        },
+        "input_sha256": "dee75f18e43644e01ebcdda3ab70ca4548b245ac674b3e2cb654342713a2c64d",
+        "fixed_first_stage_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "source_sha256": "170adede0e2b67c97d2fd209c541db75e3035ea2c6c830b1451fd8f2d159930c",
+        "source_files": {
+          "input_validation.py": "9be6121126dbcc7b8adb6ca167df6c6764c7e1ed0f1894896b18e644fd8dae1f",
+          "mip_utils.py": "27a1c6855e593d130689a5f6a65d13362001396de6b73c1b2b97f879e8a951e4",
+          "mms/__init__.py": "0cf31ffa6dc1868ea3f2b53f57132717ccf0f03b3a71bae6339e8b4509cdb99b",
+          "mms/cost_curves.py": "c8b3973630d472e2009423f6ba022b27cd2685c86289a018d65263a0624c8aa4",
+          "mms/diagnostics.py": "21e156c373835de23982e4694d8eb77c3f7e7ee8661458ab0a21bf0a7b133807",
+          "mms/logging_utils.py": "83afc6ed2beecfa86d6096ab2c4d451cde45b988cc36c2cf8c003cbf1991ac5e",
+          "mms/model/__init__.py": "bced4bf1e4c8db4f8f69467b66690765f697d46a592d787c4d41fde4bd2e785f",
+          "mms/model/bounds.py": "5f1ede612959b80f8dd89fd753d3e9c0f57290ac45741f06b3f1472d64b87336",
+          "mms/model/core.py": "3640995061bdc781584e8c4d6c31ebee5e6596b410e3029ec35efca5e9d11118",
+          "mms/model/operating_states.py": "e9224facb1b807203e862a8d1a84417d9a65b7fc9a91730b7c9aedf65d70c196",
+          "mms/model/preprocessing.py": "d385c270ad3fe471e658a979c230f220ebd293f8f8a67bdaa27dcdd52bd9a2a6",
+          "mms/model/problem.py": "2af60cb369000a6839b975c2c07ddf0dc568f6ba95364433dd5f8ca2a56eb53c",
+          "mms/model/res_dispatch.py": "1cbf959048f5f0a604c3c24ffa6929f4d24a013b7fdb8ada2022990e64fe4c00",
+          "mms/model/reserves.py": "f49bc954b419a7741a6d707b97076e970721c9feb3b75fbacf9486fba713296d",
+          "mms/model/thermal_constraints.py": "716fc92dbf74c1e1bed12035906c5b8590da22c6fe9f06f1b77689ce75d3cf44",
+          "mms/model/time_resolution.py": "e33bb2ac6f98bb8e33650aa79ad25bfa1d4fc69577bd64b3f6816a3bdb61c149",
+          "mms/objective.py": "a16446635038f5bf513840b3e50d51e473a312dcb60fadf497fc9f25145542c1",
+          "mms/penalties.py": "4e7b95c5dd8b4a644e37a97aa6ad3cc2d9aed1f180498a1cfa7b07c1ae903cc1",
+          "mms/pipeline.py": "896169d0e36562dcb50d673611543cf336f7bb0be78787242740951a34ef03a0",
+          "mms/postsolve.py": "33691ea14585444a5bc6df0c24e69fd1f4e2722f85b79d08befd982c23a70d26",
+          "mms/reports.py": "9ee1fedccba897b2ffbaea3d4983c7afe0a754a87018fa94427b2f88455836ec",
+          "mms/slacks.py": "e1b40bd95b72750fdda606be3a999f9056e9fd7931f0d1fa0637c75c4a04bb13",
+          "mms/stochastic/__init__.py": "11d2971a10c5b0a0409a13191590591a2dbee746a7ce4e66a75bee233d440b84",
+          "mms/stochastic/artifacts.py": "b968f2262326499bbc7d369de7c6cc5f783316c0fa3a5f50870fcbfc68b6c27f",
+          "mms/stochastic/data.py": "5b37b13fd6efe699aab4ffe475374ca862188999483eab5ab63ef0766f8c4cff",
+          "mms/stochastic/errors.py": "2f1393f36fa7779dfd0519dc08eede7dc61b71cb2f0ce0b20966935a8cedc3b4",
+          "mms/stochastic/evaluation.py": "e266802323e8b2ad5e9fd2a9f085be17cf64d535a7e2db9c75350eeb9c0fb8ba",
+          "mms/stochastic/model.py": "93e8dc24f2c521b509f57f1b74c273bc099b56d46cf26deea9cd71831e0cbb98",
+          "mms/stochastic/rolling.py": "a69fb01e112ed15baecefb1108a1a7c75fc3674fccb265feb1cd253c3c3b5de8",
+          "mms/stochastic/scenarios.py": "8c17f77408e40f7a5661ababb0d2d2395583c134eed115d15fab471f529d9ca4",
+          "stochastic_main.py": "803fdfb0587a6923aa35bdfbfa87287ff50999a0ce65f87b9b774319cb0a0b4a"
+        },
+        "solver": "highs",
+        "solver_settings": {
+          "time_limit_seconds": null,
+          "relative_mip_gap": 0,
+          "threads": 1
+        }
+      },
+      "expected_cost_eur": 1660.3050930759669,
+      "objective_eur": 1660.3050930759848,
+      "cvar_eur": 1693.868928565679,
+      "first_stage_cost_eur": 650.0372937325643,
+      "expected_recourse_cost_eur": 1010.2677993434025,
+      "expected_metrics": {
+        "unserved_mwh": 0.0,
+        "curtailed_res_mwh": 2.220446049250313e-16,
+        "reserve_shortfall_mw_hours": 0.0
+      },
+      "build_seconds": 0.31703150004614145,
+      "solve_seconds": 0.5701747999992222,
+      "num_variables": 2324,
+      "num_constraints": 6104,
+      "validation": {
+        "passed": true,
+        "max_constraint_residual": 8.881784197001252e-16,
+        "absolute_tolerance": 1e-05,
+        "checked_constraints": 6104,
+        "violations": [],
+        "objective_reconciliation_residual_eur": 1.7962520360015333e-11
+      }
+    },
+    "first_stage_breakdown": {
+      "thermal_online_charge_eur": 400.0,
+      "thermal_online_charge_eur_per_h": 100,
+      "online_charge_source": "cost_policy",
+      "storage_reserve_capacity_eur": 0.0
+    },
+    "scenario_tree": {
+      "stages": [
+        {
+          "stage": 1,
+          "hours": [
+            1
+          ],
+          "nodes": [
+            {
+              "path": [
+                "root"
+              ],
+              "probability": 1.0,
+              "scenarios": [
+                "tree_root_s2b0_s3b0",
+                "tree_root_s2b0_s3b1",
+                "tree_root_s2b1_s3b0",
+                "tree_root_s2b1_s3b1"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "hours": [
+            2
+          ],
+          "nodes": [
+            {
+              "path": [
+                "root",
+                "s2b0"
+              ],
+              "probability": 0.5,
+              "scenarios": [
+                "tree_root_s2b0_s3b0",
+                "tree_root_s2b0_s3b1"
+              ]
+            },
+            {
+              "path": [
+                "root",
+                "s2b1"
+              ],
+              "probability": 0.5,
+              "scenarios": [
+                "tree_root_s2b1_s3b0",
+                "tree_root_s2b1_s3b1"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "hours": [
+            3,
+            4
+          ],
+          "nodes": [
+            {
+              "path": [
+                "root",
+                "s2b0",
+                "s3b0"
+              ],
+              "probability": 0.25,
+              "scenarios": [
+                "tree_root_s2b0_s3b0"
+              ]
+            },
+            {
+              "path": [
+                "root",
+                "s2b0",
+                "s3b1"
+              ],
+              "probability": 0.25,
+              "scenarios": [
+                "tree_root_s2b0_s3b1"
+              ]
+            },
+            {
+              "path": [
+                "root",
+                "s2b1",
+                "s3b0"
+              ],
+              "probability": 0.25,
+              "scenarios": [
+                "tree_root_s2b1_s3b0"
+              ]
+            },
+            {
+              "path": [
+                "root",
+                "s2b1",
+                "s3b1"
+              ],
+              "probability": 0.25,
+              "scenarios": [
+                "tree_root_s2b1_s3b1"
+              ]
+            }
+          ]
+        }
+      ],
+      "nonanticipativity_constraints": 120
+    },
+    "implementable_dispatch": {
+      "hours": [
+        1
+      ],
+      "decisions": {
+        "activation_direction_1_1": 0.0,
+        "activation_direction_2_1": 0.0,
+        "activation_secondary_down_1_1": 0.0,
+        "activation_secondary_down_2_1": 0.0,
+        "activation_secondary_up_1_1": 0.0,
+        "activation_secondary_up_2_1": 0.0,
+        "activation_tertiary_down_1_1": 0.0,
+        "activation_tertiary_down_2_1": 0.0,
+        "activation_tertiary_up_1_1": 0.0,
+        "activation_tertiary_up_2_1": 0.0,
+        "power_1_1": 3.0046723519375313,
+        "power_2_1": 0.0,
+        "power_3_1": 1.9875403948332493,
+        "power_4_1": 0.0,
+        "storage_charge_0_1": 1.9875403948332493,
+        "storage_discharge_0_1": 0.0,
+        "storage_energy_0_1": 3.878163375091587,
+        "storage_mode_0_1": 1.0
+      },
+      "interpretation": "Root-node dispatch, BESS charge/discharge/SOC and activations; identical across scenarios."
+    }
+  }
+}

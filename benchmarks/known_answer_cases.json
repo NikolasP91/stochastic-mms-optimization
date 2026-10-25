@@ -1,0 +1,314 @@
+[
+  {
+    "name": "one_unit_two_period_exact_balance",
+    "description": "One unit starts once and exactly follows a two-period load profile.",
+    "input": {
+      "constraints": {
+        "load_production_balance_constraint": true
+      },
+      "Load_forecast": [0, 10, 12],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo benchmark unit",
+          "state": 0,
+          "availability": [10, 12],
+          "Primary_Active_Power_Reserves(MW)": [5, 5],
+          "Secondary_Active_Power_Reserves(MW)": [4, 4],
+          "Tertiary_Active_Power_Reserves(MW)": [3, 3]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [0, 0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "Power": [10, 12],
+          "State": [1, 1],
+          "Startup": [1, 0],
+          "Shutdown": [0, 0],
+          "Primary_Active_Power_Reserves(MW)": [[1, 1], [1, 1]],
+          "Secondary_Active_Power_Reserves(MW)": [[1, 1], [1, 1]],
+          "Tertiary_Active_Power_Reserves(MW)": [[1, 1], [1, 1]]
+        }
+      ],
+      "primary_upwards_APRV": [0, 0],
+      "primary_downwards_APRV": [0, 0],
+      "secondary_upwards_APRV": [0, 0],
+      "secondary_downwards_APRV": [0, 0],
+      "tertiary_upwards_APRV": [0, 0],
+      "tertiary_downwards_APRV": [0, 0]
+    },
+    "expected_validation_status": "passed",
+    "expected_dispatch_actions": ["synchronize", "remain_online"],
+    "expected_diagnostics_status": "passed"
+  },
+  {
+    "name": "res_curtailment_forced_by_load",
+    "description": "A RES unit has 10 MW available, dispatches 6 MW, and reports 4 MWh curtailed.",
+    "input": {
+      "Time_granularity": 1,
+      "constraints": {
+        "load_production_balance_constraint": true
+      },
+      "Load_forecast": [0, 20],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo benchmark unit",
+          "state": 1,
+          "availability": [20],
+          "Primary_Active_Power_Reserves(MW)": [5, 5],
+          "Secondary_Active_Power_Reserves(MW)": [4, 4],
+          "Tertiary_Active_Power_Reserves(MW)": [3, 3]
+        },
+        {
+          "gen_id": 1,
+          "comments": "Partially Controllable Wind benchmark unit",
+          "state": 1,
+          "availability": [10],
+          "Production_Forecast": [10],
+          "Accepts_SP": 1,
+          "Primary_Active_Power_Reserves(MW)": [0, 0],
+          "Secondary_Active_Power_Reserves(MW)": [0, 0],
+          "Tertiary_Active_Power_Reserves(MW)": [0, 0]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "Power": [14],
+          "State": [1],
+          "Startup": [0],
+          "Shutdown": [0],
+          "Primary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0], [0]]
+        },
+        {
+          "gen_id": 1,
+          "Power": [6],
+          "State": [1],
+          "Startup": [0],
+          "Shutdown": [0],
+          "Setpoints": [0.6],
+          "Primary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0], [0]]
+        }
+      ],
+      "primary_upwards_APRV": [0],
+      "primary_downwards_APRV": [0],
+      "secondary_upwards_APRV": [0],
+      "secondary_downwards_APRV": [0],
+      "tertiary_upwards_APRV": [0],
+      "tertiary_downwards_APRV": [0]
+    },
+    "expected_validation_status": "passed",
+    "expected_res_curtailment_mwh": 4.0,
+    "expected_diagnostics_status": "passed"
+  },
+  {
+    "name": "primary_up_reserve_shortfall",
+    "description": "Primary upward reserve requirement is 50 percent of generation and provided reserve is short.",
+    "input": {
+      "constraints": {
+        "load_production_balance_constraint": true,
+        "APRR_calculations": {
+          "calculation-method_upwards": [[1, 0], [0, 0], 0, 0],
+          "calculation-method_downwards": [[0, 0], [0, 0], 0, 0]
+        }
+      },
+      "Other_coefficients": {
+        "primary_upwards": [[50, 0], [0, 0], 0, 0],
+        "primary_downwards": [[0, 0], [0, 0], 0, 0],
+        "secondary_upwards": [[0, 0], [0, 0], 0, 0],
+        "secondary_downwards": [[0, 0], [0, 0], 0, 0],
+        "tertiary_upwards": [[0, 0], [0, 0], 0, 0],
+        "tertiary_downwards": [[0, 0], [0, 0], 0, 0]
+      },
+      "Load_forecast": [0, 10],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo reserve benchmark unit",
+          "state": 1,
+          "availability": [20],
+          "Primary_Active_Power_Reserves(MW)": [10, 10],
+          "Secondary_Active_Power_Reserves(MW)": [0, 0],
+          "Tertiary_Active_Power_Reserves(MW)": [0, 0]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "Power": [10],
+          "State": [1],
+          "Startup": [0],
+          "Shutdown": [0],
+          "Primary_Active_Power_Reserves(MW)": [[2], [0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0], [0]]
+        }
+      ],
+      "primary_upwards_APRV": [3],
+      "primary_downwards_APRV": [0],
+      "secondary_upwards_APRV": [0],
+      "secondary_downwards_APRV": [0],
+      "tertiary_upwards_APRV": [0],
+      "tertiary_downwards_APRV": [0]
+    },
+    "expected_validation_status": "warning",
+    "expected_warning_codes": ["reserve_requirement_violation", "reserve_shortfall"],
+    "expected_diagnostics_status": "warning"
+  },
+  {
+    "name": "load_curtailment_warning",
+    "description": "A one-period schedule serves 8 MW of a 10 MW load and reports 2 MW of load curtailment.",
+    "input": {
+      "constraints": {
+        "load_production_balance_constraint": true
+      },
+      "Load_forecast": [0, 10],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo load-curtailment benchmark unit",
+          "state": 1,
+          "availability": [8],
+          "Primary_Active_Power_Reserves(MW)": [0, 0],
+          "Secondary_Active_Power_Reserves(MW)": [0, 0],
+          "Tertiary_Active_Power_Reserves(MW)": [0, 0]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [2],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "Power": [8],
+          "State": [1],
+          "Startup": [0],
+          "Shutdown": [0],
+          "Primary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0], [0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0], [0]]
+        }
+      ],
+      "primary_upwards_APRV": [0],
+      "primary_downwards_APRV": [0],
+      "secondary_upwards_APRV": [0],
+      "secondary_downwards_APRV": [0],
+      "tertiary_upwards_APRV": [0],
+      "tertiary_downwards_APRV": [0]
+    },
+    "expected_validation_status": "warning",
+    "expected_warning_codes": ["load_curtailment"],
+    "expected_diagnostics_status": "warning"
+  },
+  {
+    "name": "commitment_transition_sequence",
+    "description": "Startup and shutdown flags follow a four-period offline-online-online-offline state sequence.",
+    "input": {
+      "constraints": {
+        "load_production_balance_constraint": true
+      },
+      "Load_forecast": [0, 0, 10, 10, 0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo transition benchmark unit",
+          "state": 0,
+          "availability": [10, 10, 10, 10],
+          "Primary_Active_Power_Reserves(MW)": [5, 5],
+          "Secondary_Active_Power_Reserves(MW)": [4, 4],
+          "Tertiary_Active_Power_Reserves(MW)": [3, 3]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [0, 0, 0, 0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "Power": [0, 10, 10, 0],
+          "State": [0, 1, 1, 0],
+          "Startup": [0, 1, 0, 0],
+          "Shutdown": [0, 0, 0, 1],
+          "Primary_Active_Power_Reserves(MW)": [[0, 1, 1, 0], [0, 1, 1, 0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0, 1, 1, 0], [0, 1, 1, 0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0, 1, 1, 0], [0, 1, 1, 0]]
+        }
+      ],
+      "primary_upwards_APRV": [0, 0, 0, 0],
+      "primary_downwards_APRV": [0, 0, 0, 0],
+      "secondary_upwards_APRV": [0, 0, 0, 0],
+      "secondary_downwards_APRV": [0, 0, 0, 0],
+      "tertiary_upwards_APRV": [0, 0, 0, 0],
+      "tertiary_downwards_APRV": [0, 0, 0, 0]
+    },
+    "expected_validation_status": "passed",
+    "expected_dispatch_actions": ["remain_offline", "synchronize", "remain_online", "desynchronize"],
+    "expected_diagnostics_status": "passed"
+  },
+  {
+    "name": "unavailable_unit_retained",
+    "description": "A unit with zero availability in every period remains in the output unit set with zero dispatch.",
+    "input": {
+      "constraints": {
+        "load_production_balance_constraint": true
+      },
+      "Load_forecast": [0, 0, 0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo unavailable benchmark unit",
+          "state": 0,
+          "availability": [0, 0],
+          "Primary_Active_Power_Reserves(MW)": [0, 0],
+          "Secondary_Active_Power_Reserves(MW)": [0, 0],
+          "Tertiary_Active_Power_Reserves(MW)": [0, 0]
+        }
+      ]
+    },
+    "output": {
+      "Solution_Status": "Optimal",
+      "Load_Cutrailment": [0, 0],
+      "Generating_Units": [
+        {
+          "gen_id": 0,
+          "comments": "Thermo unavailable benchmark unit",
+          "Power": [0, 0],
+          "State": [0, 0],
+          "Startup": [0, 0],
+          "Shutdown": [0, 0],
+          "Primary_Active_Power_Reserves(MW)": [[0, 0], [0, 0]],
+          "Secondary_Active_Power_Reserves(MW)": [[0, 0], [0, 0]],
+          "Tertiary_Active_Power_Reserves(MW)": [[0, 0], [0, 0]]
+        }
+      ],
+      "primary_upwards_APRV": [0, 0],
+      "primary_downwards_APRV": [0, 0],
+      "secondary_upwards_APRV": [0, 0],
+      "secondary_downwards_APRV": [0, 0],
+      "tertiary_upwards_APRV": [0, 0],
+      "tertiary_downwards_APRV": [0, 0]
+    },
+    "expected_validation_status": "passed",
+    "expected_output_unit_count": 1,
+    "expected_diagnostics_status": "passed"
+  }
+]

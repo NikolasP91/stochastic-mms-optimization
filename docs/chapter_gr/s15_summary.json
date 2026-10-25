@@ -1,0 +1,154 @@
+{
+ "title": "Σύνοψη, ασκήσεις, γλωσσάριο και βιβλιογραφία",
+ "blocks": [
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Σύνοψη σε δέκα σημεία"
+  },
+  {
+   "type": "numbered",
+   "items": [
+    "Σενάριο = πλήρης, κοινή διαδρομή όλων των αβέβαιων μεγεθών· πιθανότητα = βάρος στο κόστος, όχι συντελεστής στους φυσικούς περιορισμούς.",
+    "Στάδιο = χρονικό σημείο απόφασης σε σχέση με την πληροφορία, όχι ώρα του ορίζοντα.",
+    "Οι αποφάσεις πρώτου σταδίου είναι κοινές· οι αποφάσεις προσαρμογής διαφέρουν ανά σενάριο.",
+    "Το στοχαστικό MILP λύνεται ως ένα μεγάλο ντετερμινιστικό ισοδύναμο.",
+    "Ο κώδικας του Codex αντιγράφει το αρχικό μοντέλο ανά σενάριο και επιβάλλει μη προεξόφληση με ισότητες.",
+    "Το μοντέλο δύο σταδίων δίνει στην προσαρμογή πλήρη γνώση της διαδρομής — αισιόδοξο, ιδίως για αποθήκευση.",
+    "Το δέντρο σεναρίων επιβάλλει ίδιες αποφάσεις σε σενάρια με ίδιο ιστορικό· δίνει υλοποιήσιμη εντολή ρίζας.",
+    "WS ≤ RP ≤ EEV· VSS = EEV − RP, EVPI = RP − WS· η VSS εξαρτάται από το ποιες αποφάσεις δεσμεύονται.",
+    "Το CVaR γραμμικοποιείται ακριβώς και τιμωρεί την ουρά της κατανομής κόστους.",
+    "Οι έξοδοι διαχωρίζουν κοινό πρόγραμμα, κατανομές υπό συνθήκη και αναμενόμενα μεγέθη· ο μέσος όρος των σεναρίων δεν είναι πρόγραμμα."
+   ]
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Ασκήσεις"
+  },
+  {
+   "type": "numbered",
+   "items": [
+    "Στο παράδειγμα της ενότητας 4, αλλάξτε το κόστος ετοιμότητας σε 30 €/MW. Ποιο είναι το νέο $x^\\ast$; (Υπόδειξη: συμφέρει όσο $80\\Pr[N>x]>30$.) Υπολογίστε RP, EEV, VSS.",
+    "Για τρία ισοπίθανα σενάρια, γράψτε ρητά τις ισότητες μη προεξόφλησης για μία μεταβλητή $u_{1,5}$. Πόσες χρειάζονται; Γιατί αρκούν $|\\mathcal S|-1$;",
+    "Σχεδιάστε ένα δέντρο με `stage_start_hours = [1, 7, 13]` και διακλάδωση 1-2-2. Πόσα σενάρια υπάρχουν; Ποιες ώρες έχουν κοινή κατανομή τα σενάρια με ίδιο δεύτερο κόμβο;",
+    "Εκτελέστε το `examples/small_tree_bess.json`, αφαιρέστε το `scenario_tree` και τα `tree_path`, και συγκρίνετε το αναμενόμενο κόστος. Γιατί το μοντέλο δύο σταδίων δεν μπορεί να είναι ακριβότερο;",
+    "Υπολογίστε με το χέρι το $\\mathrm{CVaR}_{0{,}8}$ της κατανομής της ενότητας 8 και επαληθεύστε με `empirical_cvar()`.",
+    "Στο `small_storage_cvar.json` αυξήστε το `terminal_min_mwh` σε 4. Τι μήνυμα δίνει η επικύρωση; Προσθέστε `terminal_shortfall_penalty_eur_per_mwh` και ερμηνεύστε το `nonzero_slacks`.",
+    "Εξηγήστε γιατί στο small_stochastic η VSS με δέσμευση μόνο της ένταξης είναι σχεδόν μηδέν, ενώ με όλο το πρώτο στάδιο είναι 3.107,68 €."
+   ]
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Γλωσσάριο"
+  },
+  {
+   "type": "table",
+   "caption": "Ελληνικοί και αγγλικοί όροι",
+   "header": [
+    "Ελληνικός όρος",
+    "Αγγλικός όρος",
+    "Σύντομη εξήγηση"
+   ],
+   "rows": [
+    [
+     "Σενάριο",
+     "Scenario",
+     "Πλήρης διαδρομή των αβέβαιων δεδομένων"
+    ],
+    [
+     "Στάδιο",
+     "Stage",
+     "Σημείο απόφασης ως προς την πληροφορία"
+    ],
+    [
+     "Απόφαση προσαρμογής",
+     "Recourse decision",
+     "Απόφαση μετά την αποκάλυψη"
+    ],
+    [
+     "Συνάρτηση προσαρμογής",
+     "Recourse function $Q(x,\\xi)$",
+     "Βέλτιστο κόστος 2ου σταδίου"
+    ],
+    [
+     "Ντετερμινιστικό ισοδύναμο",
+     "Deterministic equivalent / extensive form",
+     "Ενιαίο LP/MILP όλων των σεναρίων"
+    ],
+    [
+     "Μη προεξόφληση",
+     "Nonanticipativity",
+     "Ίδιες αποφάσεις για ίδιο ιστορικό πληροφορίας"
+    ],
+    [
+     "Δέντρο σεναρίων",
+     "Scenario tree",
+     "Δομή σταδιακής αποκάλυψης πληροφορίας"
+    ],
+    [
+     "Πλήρης προσαρμογή",
+     "Complete recourse",
+     "Το 2ο στάδιο είναι πάντα εφικτό"
+    ],
+    [
+     "Αξία στοχαστικής λύσης",
+     "VSS",
+     "EEV − RP"
+    ],
+    [
+     "Αναμενόμενη αξία τέλειας πληροφορίας",
+     "EVPI",
+     "RP − WS"
+    ],
+    [
+     "Υπό συνθήκη αξία σε κίνδυνο",
+     "CVaR",
+     "Μέσο κόστος της χειρότερης ουράς"
+    ],
+    [
+     "Μείωση σεναρίων",
+     "Scenario reduction",
+     "Επιλογή λίγων αντιπροσωπευτικών σεναρίων"
+    ],
+    [
+     "Κυλιόμενος ορίζοντας",
+     "Rolling horizon",
+     "Επαναλαμβανόμενη επίλυση με νέα πληροφορία"
+    ]
+   ]
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Βιβλιογραφία"
+  },
+  {
+   "type": "bullets",
+   "items": [
+    "J. R. Birge, F. Louveaux, *Introduction to Stochastic Programming*, 2η έκδ., Springer, 2011.",
+    "A. Shapiro, D. Dentcheva, A. Ruszczyński, *Lectures on Stochastic Programming: Modeling and Theory*, 3η έκδ., SIAM, 2021.",
+    "P. Kall, S. W. Wallace, *Stochastic Programming*, Wiley, 1994.",
+    "A. J. Conejo, M. Carrión, J. M. Morales, *Decision Making Under Uncertainty in Electricity Markets*, Springer, 2010.",
+    "J. M. Morales, A. J. Conejo, H. Madsen, P. Pinson, M. Zugno, *Integrating Renewables in Electricity Markets*, Springer, 2014.",
+    "R. T. Rockafellar, S. Uryasev, «Optimization of conditional value-at-risk», *Journal of Risk*, 2(3), 2000.",
+    "S. Takriti, J. R. Birge, E. Long, «A stochastic model for the unit commitment problem», *IEEE Trans. Power Systems*, 11(3), 1996.",
+    "H. Heitsch, W. Römisch, «Scenario reduction algorithms in stochastic programming», *Computational Optimization and Applications*, 24, 2003.",
+    "R. T. Rockafellar, R. J.-B. Wets, «Scenarios and policy aggregation in optimization under uncertainty», *Mathematics of Operations Research*, 16(1), 1991.",
+    "*Κώδικας Διαχείρισης Ηλεκτρικών Συστημάτων ΜΔΝ*, 4η έκδοση (Μάρτιος 2022), άρθρα 109 και 111 (εφεδρείες, ισοζύγιο), και Διακήρυξη 512811, ενότητες 5.2.4.3–5.2.4.4.2 (ΚΗΕΠ)· αντίγραφα στο docs/sources."
+   ]
+  },
+  {
+   "type": "box",
+   "kind": "note",
+   "title": "Τεκμηρίωση του έργου",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "`docs/stochastic_formulation.md` (πλήρεις εξισώσεις και όρια), `docs/stochastic_mapping.md` (αντιστοίχιση ντετερμινιστικού–στοχαστικού), `docs/REVIEW_CHANGES.md` (αλλαγές της αναθεώρησης), `docs/verification_report.json` (αριθμητικά αποτελέσματα)."
+    }
+   ]
+  }
+ ]
+}
